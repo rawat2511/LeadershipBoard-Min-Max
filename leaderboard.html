@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Leadership Board</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+        .container {
+            width: 400px;
+            margin: auto;
+        }
+        .box {
+            box-sizing: border-box;
+            height: 60px;
+            width: 90px;
+            border: 2px solid black;
+            text-align: center;
+            padding-top: 17px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .min, .max {
+            padding: 10px 54px 24px 54px;
+            float: left;
+        }
+        .box-min {
+            background-color: rgb(224, 41, 41);
+        }
+        .box-max {
+            background-color: rgb(15, 189, 15);
+        }
+        #score-box {
+            background-color: #b3b3b3;
+        }
+        .text {
+            text-align: center;
+            padding-top: 10px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .clear {
+            clear: both;
+        }
+
+        #score-box {
+            margin: auto;
+            height: 80px;
+            width: 180px;
+            box-sizing: border-box;
+            border: 2px solid black;
+            font-weight: bold;
+            font-size: 30px;
+            text-align: center;
+            padding-top: 22px;
+        }
+
+        .key-pad {
+            padding-top: 30px;
+            width: 180px;
+            margin: auto;
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat( 3, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+
+        }
+        .key-pad > button {
+            box-sizing: border-box;
+            border: 1px solid black;
+            height: 43px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .zero {
+            grid-area: 4 / 2 / span 1 / span 1;
+            color: white;
+            background-color: #810065;
+        }
+
+        .enter {
+            text-align: center;
+            padding-top: 10px;
+        }
+        .enter > button {
+            height: 40px;
+            width: 180px;
+            background-color: black;
+            color: white;
+            font-size: 20px;
+            border: 2px solid black;
+        }
+        .o {
+            background-color: #ff6600;
+        }
+        .g {
+            background-color: #668100;
+        }
+        /* .min, .max, .score, .key-pad, .enter {
+            border: 1px solid rebeccapurple;
+        } */
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="min-max">
+            <div class="min">
+                <p class="box-min box" id="minimum">43</p>
+                <p class="text">MIN</p>
+            </div>
+            <div class="max">
+                <p class="box-max box" id="maximum">2019</p>
+                <p class="text">MAX</p>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="score">
+            <div class="text">SCORE</div>
+            <div id="score-box">#</div>
+        </div>
+
+        <div class="key-pad">
+            <button class="num g" onclick="numIs(this.value)" value="1">1</button>
+            <button class="num o" onclick="numIs( this.value)" value="2">2</button>
+            <button class="num g" onclick="numIs( this.value)" value="3">3</button>
+            <button class="num o" onclick="numIs( this.value)" value="4">4</button>
+            <button class="num o" onclick="numIs( this.value)" value="5">5</button>
+            <button class="num o" onclick="numIs( this.value)" value="6">6</button>
+            <button class="num g" onclick="numIs( this.value)" value="7">7</button>
+            <button class="num o" onclick="numIs( this.value)" value="8">8</button>
+            <button class="num g" onclick="numIs( this.value)" value="9">9</button>
+            <button class="zero num" onclick="numIs( this.value)" value="0">0</button>
+        </div>
+
+        <div class="enter">
+            <button id="result" onclick="result()">ENTER</button>
+        </div>
+
+    </div>
+    <script>
+        function numIs(val){
+            var score = document.getElementById("score-box");
+            if( score.innerText == "#"){
+                score.innerText = val;
+            }
+            else{
+                score.innerText = score.innerText + val;
+            }
+        }
+
+        function result(){
+            var min = Number(document.getElementById("minimum").innerText);
+            var max = Number(document.getElementById("maximum").innerText);
+            var newScore = Number(document.getElementById("score-box").innerText);
+            if( newScore < min ){
+                document.getElementById("minimum").innerText = newScore;
+            }
+            else if( newScore > max ){
+                document.getElementById("maximum").innerText = newScore;
+            }
+            document.getElementById("score-box").innerText = "#";
+        }
+
+
+    </script>
+</body>
+</html>
